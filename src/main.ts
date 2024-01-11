@@ -23,14 +23,18 @@ const router = createRouter({
     {
       path: "/user",
       name: "Users",
-      component: UsersView,
+      component: UsersView, 
+      children: [
+        {path: ":id/:userName" , name: "UserSingle", props: true, component: UsersSingleView}
+        
+      ]
     },
-    {
-      path: "/user/:id",
-      name: "UserSingle",
-      props: true,
-      component: UsersSingleView,
-    },
+    // {
+    //   path: "/user/:id",
+    //   name: "UserSingle",
+    //   props: true,
+    //   component: UsersSingleView,
+    // },
     {
       path: "/:notFound(.*)",
       name: "NotFound",

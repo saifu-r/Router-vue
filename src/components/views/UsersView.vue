@@ -1,15 +1,17 @@
 <template>
   <div class="App">
     <h2>Users Page</h2>
+    
 
     <p v-for="user in users" :key="user.id">
       <router-link :to="{
         name: 'UserSingle',
-        params:{ id: user.id}
+        params:{ id: user.id, userName: user.name}
       }">
       ({{ user.id }}) {{ user.name }}
       </router-link>
     </p>
+    <router-view></router-view>
   </div>
 </template>
 
