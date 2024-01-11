@@ -10,10 +10,11 @@
       <button @click="stepTo(-1)">Go back 1 step</button>
       <button @click="stepTo(1)">Go forward 1 step</button>
 
-      <button @click="pushTo('/user/1')">Redirect to "/user/1"</button>
+      <button @click="pushTo('/user/1/John')">Redirect to "/user/1"</button>
     </p>
 
-    <router-view />
+    <router-view></router-view>
+    <router-view name="footer"></router-view>
   </div>
 </template>
 
@@ -49,7 +50,7 @@ body{
 
 header{
  
-  background-color: bisque;
+  background-color: grey;
   width: 100%;
   padding: 20px;
   display: flex;
