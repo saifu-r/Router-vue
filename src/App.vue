@@ -1,27 +1,77 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="App">
+    <header>
+      <router-link :to="{ name: 'Home' }">Home</router-link>
+      <!-- <router-link to="/">Home</router-link><br> -----same -->
+
+      <router-link :to="{ name: 'Users' }">Users</router-link>
+    </header>
+    <p style="gap: 10px">
+      <button @click="stepTo(-1)">Go back 1 step</button>
+      <button @click="stepTo(1)">Go forward 1 step</button>
+
+      <button @click="pushTo('/user/1')">Redirect to "/user/1"</button>
+    </p>
+
+    <router-view />
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import { defineComponent } from "vue";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  name: "App",
+  components: {},
+  setup() {
+    const router = useRouter();
+
+    function stepTo(step: number) {
+      router.go(step);
+    }
+    function pushTo(route: string) {
+      router.push(route);
+    }
+
+    return {
+      stepTo,
+      pushTo,
+    };
+  },
 });
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body{
+  margin: 0;
 }
+
+header{
+ 
+  background-color: bisque;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+a{
+  text-decoration: none;
+  color: black;
+  border: 0.1rem solid black;
+  padding: 5px;
+  background: white;
+}
+
+a:active,
+a.router-link-active{
+  color: white;
+  border: 0.1rem solid black;
+  padding: 5px;
+  background: black;
+}
+
+
 </style>
